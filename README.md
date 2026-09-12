@@ -13,3 +13,6 @@ HTML
 CSS
 
 JavaScript
+
+## I did not use the guide.
+For this part 2 of my personal site, I used the submission requirements and built my site by making sure it included all the requirements. To build the Pokedex section on my site, I asked AI how to get information about the pokemon and I wrote all the code by myself.
