@@ -1,6 +1,6 @@
 # MySite-part-2-
 
-Welcome back to my readme. This is part 2 of my personal site. I have added a real feature on my website. As I have started playing pokemon go, I decided to add in a pokedex feature. You can search a pokemon and expect to see what type it is, what its national pokedex number is and
+Welcome back to my readme. This is part 2 of my personal site. I have added a real feature on my website. As I have started playing pokemon go, I decided to add in a pokedex feature. You can search a pokemon and expect to see what type it is, what its national pokedex number is and its height and weight.
 
 ## Test the site
 **[Explore the Site](https://sparklydinosaur310-design.github.io/MySite-part-2-/)**
