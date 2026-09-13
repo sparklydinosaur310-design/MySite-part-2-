@@ -1,4 +1,4 @@
-  // ============================================
+ // ============================================
   // My training streak — by Salvador
   // ============================================
 
@@ -15,7 +15,7 @@
   }
 
   // 3. Today's date as text (like "2026-9-13")
-  const today = new Date();                              // grab the clock
+  const today = new Date();
   const todayText = today.getFullYear() + "-" +
                     (today.getMonth() + 1) + "-" +
                     today.getDate();
@@ -42,4 +42,68 @@
 
       button.disabled = true;
       button.textContent = "Done for today — see you tomorrow 💪";
+
+      buildCalendar();   // re-draw so today gets its dumbbell instantly 🏋️
   });
+
+  // 7. BUILD THE CALENDAR — a grid of the whole month
+  function buildCalendar() {
+
+      const calBox = document.getElementById("calendar");
+      calBox.textContent = "";   // wipe the old grid so we can re-draw
+
+      const monthNames = ["January", "February", "March", "April", "May", "June",
+                          "July", "August", "September", "October", "November", "December"];
+      const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+      const year = today.getFullYear();
+      const month = today.getMonth();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();  // days this month
+      const firstDay = new Date(year, month, 1).getDay();           // weekday of the 1st
+
+      // heading — "September 2026"
+      const heading = document.createElement("h3");
+      heading.textContent = monthNames[month] + " " + year;
+      calBox.appendChild(heading);
+
+      // a row of weekday names
+      const nameRow = document.createElement("div");
+      nameRow.className = "cal-row cal-names";
+      for (const name of dayNames) {
+          const cell = document.createElement("div");
+          cell.className = "cal-cell";
+          cell.textContent = name;
+          nameRow.appendChild(cell);
+      }
+      calBox.appendChild(nameRow);
+
+      // the day grid
+      const grid = document.createElement("div");
+      grid.className = "cal-row";
+
+      // blank squares until the 1st, so the calendar lines up
+      for (let i = 0; i < firstDay; i++) {
+          const blank = document.createElement("div");
+          blank.className = "cal-cell blank";
+          grid.appendChild(blank);
+      }
+
+      // one square per day of the month
+      for (let d = 1; d <= daysInMonth; d++) {
+          const cell = document.createElement("div");
+          cell.className = "cal-cell";
+          cell.textContent = d;
+
+          const dateText = year + "-" + (month + 1) + "-" + d;
+          if (trainedDates.includes(dateText)) {
+              cell.textContent = d + " 🏋️";
+              cell.classList.add("trained");
+          }
+          grid.appendChild(cell);
+      }
+
+      calBox.appendChild(grid);
+  }
+
+  // 8. Draw the calendar when the page loads
+  buildCalendar();
