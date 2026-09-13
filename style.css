@@ -34,3 +34,36 @@ body {
       color: #000000;
 
   }
+
+  #streakInfo { color: #56ff56; font-size: 22px; text-align: center; font-weight: bold; }
+
+  #trainButton { display: block; margin: 20px auto; padding: 14px 32px; font-size: 18px;
+    font-weight: bold; color: #000000; background-color: #a8e063;
+    border: 2px solid #a8e063; border-radius: 12px; cursor: pointer; }
+  #trainButton:hover { transform: scale(1.05); box-shadow: 0 0 20px #a8e063; }
+
+  .cal-cell.today { border: 2px solid #56ff56; color: #56ff56; font-weight: bold; }
+
+  /* 📅 the calendar grid */
+  #calendar { max-width: 420px; margin: 20px auto 0; }
+  #calendar h3 { color: #a8e063; font-size: 24px; text-align: center; margin-bottom: 10px; }
+
+  .cal-row { display: flex; flex-wrap: wrap; }           /* one row that wraps to the next line */
+
+  .cal-cell {                                             /* one day box */
+      width: 14.28%;                                     /* one seventh — 7 fit per row */
+      padding: 12px 0;
+      border: 1px solid #a8e063;
+      background-color: #111111;
+      color: #e0e0e0;
+      box-sizing: border-box;
+      text-align: center;
+      font-size: 16px;
+      border-radius: 6px;
+  }
+
+  .cal-names .cal-cell { background-color: #14532d; color: #a8e063; font-weight: bold; }
+
+  .cal-cell.trained { background-color: #a8e063; color: #000000; font-weight: bold; }
+
+  .cal-cell.blank { border: none; background: transparent; }
