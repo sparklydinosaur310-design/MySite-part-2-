@@ -1,31 +1,45 @@
-
   // ============================================
   // My training streak — by Salvador
   // ============================================
 
   // 1. Find the button and the counter line on the page
   const button = document.getElementById("trainButton");
-  const streakText = document.getElementById("streakText");
+  const countText = document.getElementById("streakText");
 
-  // 2. Load the saved number from the browser's memory (localStorage)
-  let days = localStorage.getItem("trainingDays");
-
-  // If nothing was saved yet, start at 0
-  if (days === null) {
-      days = 0;
+  // 2. Load the list of training dates from memory
+  let trainedDates = localStorage.getItem("trainedDates");
+  if (trainedDates === null) {
+      trainedDates = [];                      // nothing saved yet → empty list
   } else {
-      days = Number(days);
+      trainedDates = trainedDates.split(","); // "2026-9-13,2026-9-12" → a list
   }
 
-  // 3. Show the current number on the page
-  function showDays() {
-      streakText.textContent = days + " days so far";
-  }
-  showDays();
+  // 3. Today's date as text (like "2026-9-13")
+  const today = new Date();                              // grab the clock
+  const todayText = today.getFullYear() + "-" +
+                    (today.getMonth() + 1) + "-" +
+                    today.getDate();
 
-  // 4. When the button is clicked: add 1, save it, show it
+  // 4. Are we already done for today?
+  const alreadyTrained = trainedDates.includes(todayText);
+
+  if (alreadyTrained) {
+      button.disabled = true;
+      button.textContent = "Done for today — see you tomorrow 💪";
+  }
+
+  // 5. Show the total count
+  countText.textContent = trainedDates.length + " days so far";
+
+  // 6. On click: record today ONE time, save, update
   button.addEventListener("click", function () {
-      days = days + 1;
-      localStorage.setItem("trainingDays", days);
-      showDays();
+      if (alreadyTrained) return;
+
+      trainedDates.push(todayText);
+      localStorage.setItem("trainedDates", trainedDates.join(","));
+
+      countText.textContent = trainedDates.length + " days so far";
+
+      button.disabled = true;
+      button.textContent = "Done for today — see you tomorrow 💪";
   });
